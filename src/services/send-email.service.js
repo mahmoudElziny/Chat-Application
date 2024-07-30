@@ -38,6 +38,5 @@ export const sendEmailService = async ({
 
 };
 
-//  ylxralzmwrdeleih
 
 

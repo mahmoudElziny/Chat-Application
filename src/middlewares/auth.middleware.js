@@ -14,14 +14,19 @@ export const auth = () => {
 
             if(!token.startsWith("chatApp")){
                 return next( new ErrorHandlerClass({message: "Invalid Token", statusCode: 400, position: "at auth api"}) );
-
             }
 
             const originalToken = token.split(" ")[1];
-
+            
             //decode
-            const decodedData = jwt.verify(originalToken, "accessToken");
-
+            let decodedData;
+            try {
+                decodedData = jwt.verify(originalToken, "accessToken");
+             
+            } catch (error) {
+                return next( new ErrorHandlerClass({message: "Invalid Token payload", statusCode: 400, position: "at auth api"}) );
+            }
+            
             if(!decodedData?._id){
                 return next( new ErrorHandlerClass({message: "Invalid Token payload", statusCode: 400, position: "at auth api"}) );     
             }
