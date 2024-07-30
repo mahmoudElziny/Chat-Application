@@ -6,7 +6,8 @@ import { ErrorHandlerClass } from "../../utils/error-class.utils.js";
 
 export const addMessage = async (req, res, next) => {
 
-    const { content, receiverId } = req.body;
+    const { content } = req.body;
+    const { receiverId } = req.params;
     
     const isReceiverIdExists = await userModel.findById({_id: new ObjectId(receiverId)});
 

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { connection, Types } from "mongoose";
+import { Types } from "mongoose";
 
 const objectIdRule = (value, helper) => {
     const isObjectIdValid = Types.ObjectId.isValid(value);
